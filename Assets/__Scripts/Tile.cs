@@ -11,15 +11,14 @@ public class Tile : MonoBehaviour
     public Color pathColor;
     public bool IsFilled => isStart || isEnd || sr.color != Color.white;
 
-
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        sr.color = Color.white;
+        sr.color = Color.black; // <-----
 
         if (dotOverlay != null)
         {
-            dotOverlay.GetComponent<SpriteRenderer>().enabled = false;
+            dotOverlay.SetActive(false);
         }
     }
 
@@ -30,13 +29,13 @@ public class Tile : MonoBehaviour
         pathColor = color;
         isStart = start;
         isEnd = !start;
-        sr.color = Color.white;
+        sr.color = Color.black; // <-----
 
         if (dotOverlay != null)
         {
+            dotOverlay.SetActive(true);
             SpriteRenderer dotSR = dotOverlay.GetComponent<SpriteRenderer>();
             dotSR.color = color;
-            dotSR.enabled = true;
         }
     }
 
@@ -49,6 +48,6 @@ public class Tile : MonoBehaviour
     public void Clear()
     {
         if (!isStart && !isEnd)
-            sr.color = Color.white;
+            sr.color = Color.black; // <----
     }
 }

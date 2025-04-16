@@ -129,4 +129,22 @@ public class FlowManager : MonoBehaviour
         Vector2Int diff = a.gridPosition - b.gridPosition;
         return (Mathf.Abs(diff.x) == 1 && diff.y == 0) || (Mathf.Abs(diff.y) == 1 && diff.x == 0);
     }
+
+    // used for backButton
+    public void ClearPaths()
+{
+    Tile[] allTiles = FindObjectsByType<Tile>(FindObjectsSortMode.None);
+
+    foreach (Tile tile in allTiles)
+    {
+        if (!tile.isStart && !tile.isEnd && tile.sr.color != Color.white)
+        {
+            tile.Clear();
+        }
+    }
+
+    // Also reset path tracking
+    connectedPaths.Clear();
+}
+
 }
