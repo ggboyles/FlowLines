@@ -44,7 +44,7 @@ public class FlowManager : MonoBehaviour
                 {
                     if (!tile.isStart && !tile.isEnd)
                     {
-                        if (tile.sr.color != Color.white && tile.sr.color != currentColor)
+                        if (tile.sr.color != Color.black && tile.sr.color != currentColor)
                         {
                             if (overwrittenColor == null)
                                 overwrittenColor = tile.sr.color;
@@ -100,7 +100,7 @@ public class FlowManager : MonoBehaviour
         Tile[] allTiles = FindObjectsByType<Tile>(FindObjectsSortMode.None);
         foreach (Tile tile in allTiles)
         {
-            if (!tile.isStart && !tile.isEnd && tile.sr.color == Color.white)
+            if (!tile.isStart && !tile.isEnd && tile.sr.color == Color.black)
                 return;
         }
 
@@ -137,7 +137,7 @@ public class FlowManager : MonoBehaviour
 
     foreach (Tile tile in allTiles)
     {
-        if (!tile.isStart && !tile.isEnd && tile.sr.color != Color.white)
+        if (!tile.isStart && !tile.isEnd && tile.sr.color != Color.black)
         {
             tile.Clear();
         }
