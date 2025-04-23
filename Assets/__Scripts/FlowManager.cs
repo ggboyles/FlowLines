@@ -5,12 +5,20 @@ public class FlowManager : MonoBehaviour
 {
     public Camera mainCam;
     public GameObject victoryPopup;
+    public AudioClip connectSound;
+    public AudioClip clearSound;
 
+    private AudioSource audioSource;
     private Tile currentStart = null;
     private Color currentColor;
     private List<Tile> currentPath = new();
     private Color? overwrittenColor = null;
     private Dictionary<Color, bool> connectedPaths = new();
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -85,6 +93,11 @@ public class FlowManager : MonoBehaviour
                 {
                     connectedPaths[currentColor] = true;
                     Debug.Log("Connected path color: " + currentColor);
+
+                    if (connectSound != null && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(connectSound);
+                    }
                 }
             }
 
@@ -140,6 +153,13 @@ public class FlowManager : MonoBehaviour
         if (!tile.isStart && !tile.isEnd && tile.sr.color != Color.black)
         {
             tile.Clear();
+        }
+
+        // plays clear sound
+        if (clearSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clearSound, 0.05f); // had to turn volume down
+
         }
     }
 
