@@ -7,4 +7,9 @@ public class StartMenu : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+    
+    public void LoadLevelSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
+    }
 }
